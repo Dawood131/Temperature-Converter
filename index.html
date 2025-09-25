@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+
+        <!-- left: thermostat (visual) -->
+        <div class="thermo-col">
+            <div class="thermo-card" aria-hidden="true">
+                <div class="scale" aria-hidden="true">
+                    <!-- marks with labels: 100,50,0,-50 -->
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="mark big"></div>
+                        <div>100°C</div>
+                    </div>
+                    <div class="mark"></div>
+                    <div class="mark"></div>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="mark big"></div>
+                        <div>50°C</div>
+                    </div>
+                    <div class="mark"></div>
+                    <div class="mark"></div>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="mark big"></div>
+                        <div>0°C</div>
+                    </div>
+                    <div class="mark"></div>
+                    <div class="mark"></div>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="mark big"></div>
+                        <div>-50°C</div>
+                    </div>
+                </div>
+
+                <div class="tube" id="tube">
+                    <div class="mercury" id="mercury"></div>
+                </div>
+
+                <div class="bulb" id="bulb"></div>
+            </div>
+
+            <!-- <div class="thermo-label small">Thermometer (range: -50°C → 100°C)</div> -->
+        </div>
+
+        <!-- right: controls -->
+        <div class="card" role="region" aria-label="temperature converter">
+            <h2>Temperature Converter</h2>
+
+            <div class="hint small">Type a value, choose units & press Convert</div>
+
+            <div class="row">
+                <input id="tempInput" class="input" type="number" placeholder="e.g. 37" />
+            </div>
+
+            <div class="row" style="margin-bottom:6px;">
+                <div class="select-wrapper">
+                    <select id="fromUnit" class="select" aria-label="from unit">
+                        <option value="C">Celsius (°C)</option>
+                        <option value="F">Fahrenheit (°F)</option>
+                        <option value="K">Kelvin (K)</option>
+                    </select>
+                </div>
+
+                <div style="display:flex;align-items:center;color:var(--muted)">→</div>
+
+                <div class="select-wrapper">
+                    <select id="toUnit" class="select" aria-label="to unit">
+                        <option value="C">Celsius (°C)</option>
+                        <option value="F">Fahrenheit (°F)</option>
+                        <option value="K">Kelvin (K)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-top:8px;">
+                <button class="btn" id="convertBtn">Convert</button>
+                <button class="btn" id="swapBtn"
+                    style="background:linear-gradient(90deg,#ffd36c,#ff9a6c); color:#2b1200">Swap</button>
+            </div>
+
+            <div class="result" id="result">Converted: --</div>
+            <div style="height:6px"></div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

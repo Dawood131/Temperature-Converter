@@ -1,0 +1,401 @@
+ :root {
+     --bg1: #020317;
+     --bg2: #06122b;
+     --glass: rgba(255, 255, 255, 0.04);
+     --glass-strong: rgba(255, 255, 255, 0.06);
+     --neon: #2de0ff;
+     --accent: #6cf07a;
+     --warn: #ff6b6b;
+     --muted: rgba(255, 255, 255, 0.5);
+     --card-radius: 16px;
+ }
+
+ * {
+     box-sizing: border-box
+ }
+
+ html,
+ body {
+     height: 100%
+ }
+
+ body {
+     margin: 0;
+     font-family: "Poppins", system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+     background: radial-gradient(1200px 600px at 10% 20%, #001025 0%, transparent 10%),
+         radial-gradient(900px 500px at 90% 80%, #12001a 0%, transparent 10%),
+         linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #e6f7ff;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+ }
+
+ /* main container */
+ .app {
+     display: flex;
+     flex-direction: column;
+     /* mobile default */
+     align-items: center;
+     justify-content: center;
+     gap: 20px;
+     width: 100%;
+     max-width: 1200px;
+     margin: auto;
+     padding: 20px;
+ }
+
+ /* Glass card for controls */
+ .card {
+     flex: 1;
+     min-width: 320px;
+     background: linear-gradient(180deg,
+             rgba(255, 255, 255, 0.06),
+             rgba(255, 255, 255, 0.03));
+     background-repeat: no-repeat;
+     /* ✅ repeat band */
+     background-size: 100% 100%;
+     /* ✅ pura fill hoga */
+     background-position: center;
+     /* ✅ center align */
+     border-radius: var(--card-radius);
+     padding: 28px;
+     box-shadow: 0 8px 40px rgba(2, 8, 23, 0.6),
+         inset 0 1px 0 rgba(255, 255, 255, 0.02);
+     border: 1px solid rgba(255, 255, 255, 0.04);
+     backdrop-filter: blur(8px) saturate(120%);
+ }
+
+
+
+ .card h2 {
+     margin: 0 0 18px 0;
+     font-size: 20px;
+     letter-spacing: 0.2px;
+     color: #dff8ff;
+ }
+
+ .row {
+     display: flex;
+     gap: 12px;
+     align-items: center;
+     margin-bottom: 14px;
+ }
+
+ .input,
+ .select {
+     padding: 12px 14px;
+     border-radius: 12px;
+     border: none;
+     outline: none;
+     background: rgba(255, 255, 255, 0.02);
+     color: #e7fbff;
+     box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
+     font-size: 15px;
+     flex: 1;
+ }
+
+ .input::placeholder {
+     color: rgba(230, 247, 255, 0.35)
+ }
+
+ /* custom select visible styling */
+ .select {
+     min-width: 160px;
+     max-width: 100%;
+     appearance: none;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     position: relative;
+     padding-right: 36px;
+     cursor: pointer;
+     background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+ }
+
+ /* small arrow inside select */
+ .select-wrapper {
+     position: relative;
+     flex: 0 0 auto;
+ }
+
+ .select-wrapper::after {
+     content: '▾';
+     position: absolute;
+     right: 12px;
+     top: 50%;
+     transform: translateY(-50%);
+     color: var(--muted);
+     pointer-events: none;
+     font-size: 12px;
+ }
+
+ select option {
+     background: #1e293b;
+     /* dropdown ka background */
+     color: #fff;
+     /* text white clear */
+ }
+
+ select:focus {
+     outline: none;
+     border-color: #00eaff;
+     box-shadow: 0 0 10px #00eaff;
+ }
+
+ /* button */
+ .btn {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     gap: 8px;
+     padding: 12px 18px;
+     border-radius: 12px;
+     background: linear-gradient(90deg, #0fe7ff 0%, #5db7ff 60%);
+     color: #001b22;
+     font-weight: 600;
+     border: none;
+     cursor: pointer;
+     box-shadow: 0 6px 20px rgba(8, 180, 220, 0.12), 0 0 18px rgba(13, 150, 200, 0.06);
+     transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
+ }
+
+ .btn:hover {
+     transform: translateY(-3px);
+     box-shadow: 0 10px 30px rgba(13, 150, 200, 0.18), 0 0 28px rgba(13, 150, 200, 0.12);
+     filter: brightness(1.03);
+ }
+
+ .btn:active {
+     transform: translateY(0) scale(.99);
+     box-shadow: 0 6px 20px rgba(8, 180, 220, 0.10);
+ }
+
+ /* result badge */
+ .result {
+     margin-top: 18px;
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     justify-content: center;
+     padding: 14px;
+     border-radius: 12px;
+     background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+     border: 1px solid rgba(255, 255, 255, 0.03);
+     box-shadow: 0 6px 30px rgba(2, 8, 23, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+     color: #aef6ff;
+     font-weight: 600;
+     font-size: 16px;
+ }
+
+ /* right side - thermometer area */
+ .thermo-col {
+     width: 100%;
+     max-width: 260px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: auto;
+ }
+
+ /* thermometer card frame */
+ .thermo-card {
+     width: 120px;
+     padding: 22px 14px 44px;
+     border-radius: 20px;
+     background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+     border: 1px solid rgba(255, 255, 255, 0.03);
+     box-shadow: 0 10px 30px rgba(2, 8, 23, 0.6);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+ }
+
+ /* thermometer outer tube (silver glass) */
+ .tube {
+     position: relative;
+     width: 34px;
+     height: 260px;
+     border-radius: 40px;
+     background: linear-gradient(180deg, #f6f7f8, #e9eaec);
+     border: 3px solid rgba(200, 200, 200, 0.7);
+     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 2px 8px rgba(255, 255, 255, 0.5);
+     overflow: hidden;
+     display: flex;
+     align-items: flex-end;
+     justify-content: center;
+ }
+
+ /* mercury (liquid) */
+ .mercury {
+     width: 60%;
+     height: 0%;
+     border-radius: 20px 20px 6px 6px;
+     transition: height .7s cubic-bezier(.22, .9, .32, 1), background .45s ease, box-shadow .45s;
+     box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.25);
+ }
+
+ /* bulb at bottom (glossy) */
+ .bulb {
+     position: absolute;
+     bottom: -40px;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 84px;
+     height: 84px;
+     border-radius: 50%;
+     border: 3px solid rgba(200, 200, 200, 0.7);
+     background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.12) 12%, transparent 55%), #ff3b3b;
+     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 8px 20px rgba(255, 255, 255, 0.08);
+     transition: background .45s ease, box-shadow .45s ease, transform .25s;
+ }
+
+ /* small scale marks on tube (left side) */
+ .scale {
+     position: absolute;
+     right: -70px;
+     /* tube ke sath side me */
+     top: 0;
+     bottom: 0;
+     /* ✅ top-bottom se stretch hoga */
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     /* ✅ equal spacing */
+ }
+
+ .scale-item {
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     font-size: 14px;
+     font-weight: 600;
+     color: #333;
+ }
+
+ .mark {
+     width: 15px;
+     height: 2px;
+     background: #333;
+ }
+
+ .mark {
+     width: 28px;
+     height: 2px;
+     background: rgba(255, 255, 255, 0.06);
+     margin: 2px 0;
+     border-radius: 2px;
+ }
+
+ .mark.big {
+     width: 34px;
+     height: 3px;
+     background: rgba(255, 255, 255, 0.12);
+ }
+
+ /* small helper text under thermo */
+ .thermo-label {
+     margin-top: 10px;
+     font-size: 13px;
+     color: var(--muted);
+     text-align: center;
+ }
+
+ /* responsive */
+ @media (max-width:920px) {
+     .app {
+         flex-direction: column;
+         gap: 22px;
+         padding: 22px
+     }
+
+     .thermo-col {
+         order: -1
+     }
+
+     .card {
+         width: 100%
+     }
+ }
+
+ /* small focus glow for selects when active (we will also set background by JS to reflect selected) */
+ .select:focus {
+     box-shadow: 0 6px 24px rgba(15, 230, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+     border-radius: 12px;
+ }
+
+ /* tiny flairs */
+ .hint {
+     font-size: 13px;
+     color: rgba(230, 247, 255, 0.36);
+     margin-bottom: 8px
+ }
+
+ .small {
+     font-size: 12px;
+     color: rgba(230, 247, 255, 0.36)
+ }
+
+ /* Tablet size */
+ @media (max-width: 768px) {
+     .thermo-col {
+         width: 200px;
+     }
+
+     .thermo-card {
+         transform: scale(0.9);
+     }
+
+     .input,
+     .select {
+         font-size: 14px;
+         padding: 10px 12px;
+     }
+
+     .btn {
+         padding: 10px 14px;
+         font-size: 14px;
+     }
+ }
+
+ /* Mobile size */
+ @media (max-width: 480px) {
+     .thermo-col {
+         width: 160px;
+     }
+
+     .thermo-card {
+         transform: scale(0.8);
+     }
+
+     .row {
+         flex-direction: column;
+         align-items: stretch;
+     }
+
+     .select-wrapper {
+         width: 100%;
+     }
+
+     .select {
+         width: 100%;
+     }
+
+     .btn {
+         flex: 1;
+     }
+ }
+
+ @media (min-width: 768px) {
+     .app {
+         flex-direction: row;
+         /* tablet + desktop → side by side */
+         align-items: flex-start;
+     }
+
+     .thermo-col {
+         margin: 0;
+     }
+ }
